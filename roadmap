@@ -1,0 +1,114 @@
+# catalog  - productname, address, etc etc
+# basically it is the master item which will be shown to the variouis customers
+# than customers can select the data from the catalog and then they will order
+
+
+
+
+
+# docker-compose up --build
+
+
+
+# mongo commands
+#         sudo docker exec -it mongo bash 
+#         mongo - then connection will be activated
+#         use demo
+#             use demo
+#             'switched to db demo'
+#             db.goku.insertMany([{name: "mango", origin: "malaysia", price: 3} ])
+#             { acknowledged: true,
+#             insertedIds: { '0': ObjectId("62dc35e9701d2ec19f03be64") } }
+
+
+#                             _id
+#                                 62dc35e9701d2ec19f03be64
+#                             name
+#                                 "mango"
+#                             origin
+#                                 "malaysia"
+#                             price
+#                                 3
+
+# macair2018@cyno.co.in
+
+#                     killing the port
+
+#                         sudo lsof -nP -i4TCP:5432 | grep LISTEN - to see the port
+#                         sudo kill 131 - to kill postgres tcp
+
+
+# cart
+
+
+
+# import imp
+# from multiprocessing.spawn import import_main_path
+# from djongo import models as mongo_models
+# from user.models import CustomUser
+
+# # Create your models here.
+# class OrderModel(mongo_models.Model):
+#     STATUS = (
+#             ('Accept', 'Accepted'),
+#             ('Reject', 'Rejected'),
+#             ('Pending', 'Pending'),
+#             ('Dispatch','Dispatched'),
+#             ('Cancel', 'Cancelled'),
+#             ('Delivered', 'Delivered')
+#         )
+#     PAY_STATUS = (
+#         ('None','None'),
+#         ('Paid','Paid'),
+#         ('RefundInit','RefundInit'),
+#         ('Refunded','Refunded')
+#     )
+#     # customer_id = mongo_models.ForeignKey(CustomUser, on_delete=mongo_models.CASCADE, default="",primary_key=True)
+#     cart_items = mongo_models.JSONField(default='')
+#     created_on = mongo_models.DateTimeField(auto_now_add = True)
+#     order_status = mongo_models.CharField(choices=STATUS, max_length=10, default="Pending")
+#     total_price = mongo_models.FloatField(default=0.0)
+#     payment_id = mongo_models.CharField(max_length=30,default="")
+#     payment_status = mongo_models.CharField(choices=PAY_STATUS, default='None',max_length=20)
+#     coupon_code = mongo_models.CharField(max_length=20,default="")
+
+
+
+#     class Meta:
+#         _use_db = 'nonrel'
+
+#     def __str__(self):
+#         return self.customer_id
+    
+
+
+# from rest_framework import status
+
+# from rest_framework.views import APIView
+# from .serializers import *
+# from rest_framework.response import Response
+# from django.http import JsonResponse
+# import json
+# from .models import *
+# from user.views import authentication_user
+# from user.models import CustomUser
+# class OrderView(APIView):
+#     def post(self, request):
+#         payload, user, user_id = authentication_user(self,request, 'customer')
+#         # request_data = request.data
+#         # request_data['order_status'] = 'Pending'
+#         # serializer = OrderModelSerializer(data=request_data)
+#         # serializer.is_valid(raise_exception=True)
+#         # user_instance = CustomUser.objects.filter(id=user_id)
+#         # data = {}
+#         # cart = OrderModel.objects.create[{
+#         #     "hello":1
+#         # }]
+#         # serializer.save()
+#         # return Response()
+#         request_data = request.data
+#         serializer = OrderModelSerializer(data=request_data)
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save()
+#         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    
